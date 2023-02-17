@@ -183,6 +183,13 @@ def $RNMapboxMaps.post_install(installer)
         end
       end
     end
+    installer.pods_project.targets.each do |target|
+         target.build_configurations.each do |config|
+            if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 13.0
+              config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+            end
+         end
+     end
   end
 end
 
@@ -235,6 +242,8 @@ Pod::Spec.new do |s|
     when 'mapbox'
       s.dependency 'MapboxMaps', MapboxImplVersion
       s.dependency 'Turf'
+      s.dependency 'MapboxCoreNavigation'
+      s.dependency 'MapboxNavigation'
       s.swift_version = '5.0'
     when 'mapbox-gl'
       s.dependency 'Mapbox-iOS-SDK', MapboxImplVersion
