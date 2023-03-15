@@ -607,6 +607,19 @@ class MapView extends NativeBridgeComponent(
   }
 
   /**
+   * Returns the map's bearing
+   *
+   * @example
+   * const center = await this._map.getBearing();
+   *
+   * @return {Number} Bearing
+   */
+  async getBearing() {
+    const res = await this._runNativeCommand('getBearing', this._nativeRef);
+    return res.bearing;
+  }
+
+  /**
    * Queries the currently loaded data for elevation at a geographical location.
    * The elevation is returned in meters relative to mean sea-level.
    * Returns null if terrain is disabled or if terrain data for the location hasn't been loaded yet.
