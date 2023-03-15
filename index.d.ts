@@ -312,6 +312,7 @@ declare namespace MapboxGL {
     takeSnap(writeToDisk?: boolean): Promise<string>;
     getZoom(): Promise<number>;
     getCenter(): Promise<GeoJSON.Position>;
+    getBearing(): Promise<number>;
     showAttribution(): void;
     setSourceVisibility(
       visible: boolean,
