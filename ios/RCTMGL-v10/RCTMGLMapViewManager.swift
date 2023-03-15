@@ -114,6 +114,15 @@ extension RCTMGLMapViewManager {
   }
 
   @objc
+  func getBearing(_ reactTag: NSNumber,
+                 resolver: @escaping RCTPromiseResolveBlock,
+                 rejecter: @escaping RCTPromiseRejectBlock) -> Void {
+    withMapboxMap(reactTag, name:"getBearing", rejecter: rejecter) { mapboxMap in
+      resolver(["bearing": mapboxMap.cameraState.bearing])
+    }
+  }
+
+  @objc
   func getCoordinateFromView(
     _ reactTag: NSNumber,
     atPoint point: CGPoint,

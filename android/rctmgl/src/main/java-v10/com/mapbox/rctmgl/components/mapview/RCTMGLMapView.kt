@@ -698,6 +698,14 @@ open class RCTMGLMapView(private val mContext: Context, var mManager: RCTMGLMapV
         })
     }
 
+    fun getBearing(callbackID: String?) {
+        var bearing = mMap!!.cameraState!!.bearing
+
+        sendResponse(callbackID, {
+            it.putDouble("bearing", bearing)
+        })
+    }
+
     fun getZoom(callbackID: String?) {
         var zoom = mMap!!.cameraState!!.zoom
 

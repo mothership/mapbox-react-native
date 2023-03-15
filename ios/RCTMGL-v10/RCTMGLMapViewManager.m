@@ -52,6 +52,10 @@ RCT_EXTERN_METHOD(getCenter:(nonnull NSNumber*)reactTag
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(getBearing:(nonnull NSNumber*)reactTag
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
+
 RCT_EXTERN_METHOD(getCoordinateFromView:(nonnull NSNumber*)reactTag
                   atPoint:(CGPoint)point
                   resolver:(RCTPromiseResolveBlock)resolve

@@ -230,6 +230,7 @@ open class RCTMGLMapViewManager(context: ReactApplicationContext?) :
             .put("takeSnap", METHOD_TAKE_SNAP)
             .put("getZoom", METHOD_GET_ZOOM)
             .put("getCenter", METHOD_GET_CENTER)
+            .put("getBearing", METHOD_GET_BEARING)
             .put("setHandledMapChangedEvents", METHOD_SET_HANDLED_MAP_EVENTS)
             .put("showAttribution", METHOD_SHOW_ATTRIBUTION)
             .put("setSourceVisibility", METHOD_SET_SOURCE_VISIBILITY)
@@ -256,6 +257,9 @@ open class RCTMGLMapViewManager(context: ReactApplicationContext?) :
             }
             METHOD_GET_CENTER -> {
                 mapView.getCenter(args!!.getString(0));
+            }
+            METHOD_GET_BEARING -> {
+                mapView.getBearing(args!!.getString(0));
             }
             METHOD_GET_POINT_IN_VIEW -> {
                 mapView.getPointInView(args!!.getString(0), args.getArray(1).toCoordinate())
@@ -360,6 +364,7 @@ open class RCTMGLMapViewManager(context: ReactApplicationContext?) :
         const val METHOD_SHOW_ATTRIBUTION = 11
         const val METHOD_SET_SOURCE_VISIBILITY = 12
         const val METHOD_QUERY_TERRAIN_ELEVATION = 13
+        const val METHOD_GET_BEARING = 14
     }
 
     init {
