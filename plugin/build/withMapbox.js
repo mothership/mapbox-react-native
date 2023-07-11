@@ -111,10 +111,24 @@ function addInstallerBlock(src, blockName) {
 }
 exports.addInstallerBlock = addInstallerBlock;
 function addMapboxInstallerBlock(src, blockName) {
+    let newSrc = `    $RNMapboxMaps.${blockName}_install(installer)`
+    if (blockName === 'post') {
+        newSrc = `    $RNMapboxMaps.${blockName}_install(installer)
+    require 'fileutils'
+    resources_folder = 'Pods/MapboxNavigation/Sources/MapboxNavigation/Resources'
+    Dir.foreach(resources_folder) do |item|
+        next if item == '.' || item == '..' || item == 'Base.lproj' || item == 'en.lproj' || item == 'Assets.xcassets'
+        full_path = File.join(resources_folder, item)   # Get the full path of the item
+        if File.directory?(full_path)
+            FileUtils.rm_rf(full_path)
+            FileUtils.cp_r(File.join(resources_folder, 'en.lproj'), full_path)
+        end
+    end`
+    }
     return (0, generateCode_1.mergeContents)({
         tag: `@rnmapbox/maps-${blockName}_installer`,
         src,
-        newSrc: `    $RNMapboxMaps.${blockName}_install(installer)`,
+        newSrc: newSrc,
         anchor: new RegExp(`^\\s*${blockName}_install do \\|installer\\|`),
         offset: 1,
         comment: '#',
